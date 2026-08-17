@@ -7,6 +7,7 @@ plugins {
 repositories {
     // Specify the repository mirror that we want to download our dependencies from. Maven Central is configured by default when creating a new Gradle project.
     mavenCentral()
+    maven { url 'https://jcenter.bintray.com' }
 }
 
 dependencies {

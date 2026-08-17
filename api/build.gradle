@@ -6,23 +6,26 @@ plugins {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
 
     // Use the Jersey framework to make writing and testing servlets easier.
-    implementation 'org.glassfish.jersey.containers:jersey-container-servlet-core:+'
-    implementation 'org.glassfish.jersey.containers:jersey-container-jetty-http:+'
-    implementation 'org.glassfish.jersey.core:jersey-server:+'
-    implementation 'org.glassfish.jersey.inject:jersey-hk2:+'
-    implementation 'org.glassfish.jersey.media:jersey-media-json-jackson:+'
+    def jerseyVersion = '3.0.12'
+    implementation "org.glassfish.jersey.containers:jersey-container-servlet-core:${jerseyVersion}"
+    implementation "org.glassfish.jersey.containers:jersey-container-jetty-http:${jerseyVersion}"
+    implementation "org.glassfish.jersey.core:jersey-server:${jerseyVersion}"
+    implementation "org.glassfish.jersey.inject:jersey-hk2:${jerseyVersion}"
+    implementation "org.glassfish.jersey.media:jersey-media-json-jackson:${jerseyVersion}"
     // Use Jakarta (Java EE) for the servlet primitives.
     implementation 'jakarta.servlet:jakarta.servlet-api:5.+'
     // Use the Jetty server.
-    implementation 'org.eclipse.jetty:jetty-server:+'
-    implementation 'org.eclipse.jetty:jetty-servlet:+'
-    implementation 'org.eclipse.jetty:jetty-webapp:+'
+    def jettyVersion = '11.0.24'
+    implementation "org.eclipse.jetty:jetty-server:${jettyVersion}"
+    implementation "org.eclipse.jetty:jetty-servlet:${jettyVersion}"
+    implementation "org.eclipse.jetty:jetty-webapp:${jettyVersion}"
+    implementation "org.eclipse.jetty:jetty-security:${jettyVersion}"
     // We want to have some logging output if things go wrong, so use the simple console logger from SLF4J.
     // In our simple use case, the logger gets automatically configured by simply existing.
     implementation 'org.slf4j:slf4j-simple:+'
@@ -31,17 +34,20 @@ dependencies {
     implementation project(':domain')
 
     // Use JUnit Jupiter API for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
     // Also use the Mockito mocking framework to mock simple server functionality.
-    testImplementation "org.mockito:mockito-core:2.+"
+    testImplementation "org.mockito:mockito-core:5.11.0"
 
     // Use JUnit Jupiter Engine for testing.
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+
 }
 
 application {
     // Define the main class for the application.
-    mainClassName = 'mancala.App'
+    mainClass = 'java.mancala.App'
 }
 
 test {
